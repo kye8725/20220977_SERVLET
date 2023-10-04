@@ -3,7 +3,7 @@
 <%@ page import = "dto.Product"%>
 <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session" />
 
-<%! String greeting = "현재 페이지는 원두 상품 목록입니다.";
+<%! String greeting = "현재 페이지는 커피 상품 목록입니다.";
 	String tagline = "하단 페이지 : 확인";%>
 <div class="container">
     <div class="jumbotron">
@@ -46,7 +46,7 @@
 			%>
 			<div class="col-md-4">
                 <div class="card bg-dark text-white">
-                        <img src="image/product/P1234.png" class="card-img" alt="...">
+                        <img src="image/product/<%=product.getProductId()%>.jpg"a class="card-img" alt="...">
                         <div class="card-img-overlay">
                         
                         </div>
@@ -54,6 +54,7 @@
 				<h3><%=product.getPname()%></h3>
 				<p><%=product.getDescription()%>
 				<p><%=product.getUnitPrice()%>원
+                <p><a href="product_detail.jsp?id=<%=product.getProductById()%>" class="btn btn-secondary" role="button"> 상품 상세 정보 &raquo;</a>
 			</div>
 			<%
 				}
