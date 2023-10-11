@@ -5,6 +5,13 @@ import dto.Product;
 public class ProductRepository{
     
     private ArrayList<Product> listOfProducts=new ArrayList<Product>();
+    private static ProductRepository instance = new ProductRepository();
+    
+    public static ProductRepository getInstance(){
+	return instance;
+   }
+
+
     
     public ProductRepository(){
         Product phone = new Product("P1234", "인도네시아 만델링 G1 수마트라", 80000);
@@ -13,6 +20,8 @@ public class ProductRepository{
 		phone.setManufacturer("Apple");
 		phone.setUnitsInStock(1000);
 		phone.setCondition("New");
+        phone.setFilename("P1234.jpg");
+
         
         Product notebook = new Product("P1235", "에티오피아 내추럴 예가체프 G4", 15000);
 		notebook.setDescription("과일의 은은한 향과 후미의 단맛과 적은 산미");
@@ -20,6 +29,7 @@ public class ProductRepository{
 		notebook.setManufacturer("LG");
 		notebook.setUnitsInStock(1000);
 		notebook.setCondition("Refurbished");
+        notebook.setFilename("P1235.jpg");
 
 		Product tablet = new Product("P1236", "light 과테말라 SHB 안티구아", 90000);
 		tablet.setDescription("개성있는 산미와 함께 적절한 무게감이 있는 커피");
@@ -27,6 +37,8 @@ public class ProductRepository{
 		tablet.setManufacturer("Samsung");
 		tablet.setUnitsInStock(1000);
 		tablet.setCondition("Old");
+        tablet.setFilename("P1236.jpg");
+
 		
 		// 위와 같이 상품 초기화 하고 아래에 상품을 추가
 
@@ -52,5 +64,9 @@ public class ProductRepository{
 		}
 		return productById;
 	}
+
+    public void addProduct(Product product) {
+	listOfProducts.add(product);
+   }
 
 }
