@@ -13,7 +13,7 @@
 	</div>
 
     <div>
-        <img src="image\coffeeduck.jpg" class="img-fluid" alt="main_image">
+        <img src="..\image\coffeeduck.jpg" class="img-fluid" alt="main_image">
     </div>
 
      <div class="container">
