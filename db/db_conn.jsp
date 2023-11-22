@@ -8,10 +8,10 @@
 	try {
 		String url = "jdbc:mysql://localhost:3306/ggouppang_20220977?characterEncoding=utf8";
 		String user = "root";
-		String password = '123123";
+		String password = "123123";
 
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ggouppang_20220977?characterEncoding=utf8", root, 123123);
+		conn = DriverManager.getConnection(url, user, password);
 		
 	} catch (SQLException ex) {
 		out.println("데이터베이스 연결이 실패되었습니다.<br>");

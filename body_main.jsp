@@ -22,24 +22,9 @@
 	ArrayList<Product> listOfProducts = productDAO.getAllProducts(); // 리스트에 상품 전체 정보를 얻어온다.
 %> 
 
-   <div class="card bg-dark text-white">
-     <img src="image/image4.png" class="card-img" alt="...">
-    <div class="card-img-overlay">
-    <h5 class="card-title">첫 주문 이벤트</h5>
-    <p class="card-text">출처 : 콩볶는 사람들</p>
-      </div>
-  </div>
+  
 
-    <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-        원두커피
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">콜드브루</a>
-      <a href="#" class="list-group-item list-group-item-action">커피머신</a>
-      <a href="#" class="list-group-item list-group-item-action">에스프레소머신</a>
-
-          
-     </div> 
+   
  
 
       <div class="container">
@@ -49,7 +34,7 @@
 		pstmt = conn.prepareStatement(sql); // 연결 생성
 		rs = pstmt.executeQuery(); // 쿼리 실행
 		while (rs.next()) { // 결과 ResultSet 객체 반복
-	        s%>
+	        %>
 
 			<div class="col-md-4">
                 <div class="card bg-dark text-white">
@@ -59,9 +44,9 @@
                         </div>
                         </div>
 				<h3><%=rs.getString("p_name")%></h3>
-		<p><%=rs.getString("p_description")%>
-		<p><%=rs.getString("p_unitPrice")%>원
-		<p><a href="product_detail.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;></a>
+		        <p><%=rs.getString("p_description")%>
+		        <p><%=rs.getString("p_unitPrice")%>원
+		        <p><a href="product_detail.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;></a>
 			</div>
 			<%
 			} // 반복문 끝난 이후 db 연결 종료	
@@ -76,3 +61,29 @@
 		</div>
 		<hr>
 	</div>
+
+<div class="card bg-dark text-white">
+     <img src="image/image4.png" class="card-img" alt="...">
+    <div class="card-img-overlay">
+    <h5 class="card-title">첫 주문 이벤트</h5>
+    <p class="card-text">출처 : 콩볶는 사람들</p>
+      </div>
+  </div>
+
+ <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        원두커피
+      </a>
+      <a href="#" class="list-group-item list-group-item-action">콜드브루</a>
+      <a href="#" class="list-group-item list-group-item-action">커피머신</a>
+      <a href="#" class="list-group-item list-group-item-action">에스프레소머신</a>
+
+          
+     </div> 
+
+    <!-- <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active" aria-current="true">커피</a>
+      <a href="#" class="list-group-item list-group-item-action">커피콩</a>
+      <a href="#" class="list-group-item list-group-item-action">커피머신</a>
+
+    </div> -->
