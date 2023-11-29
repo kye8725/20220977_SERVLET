@@ -35,7 +35,6 @@
 		rs = pstmt.executeQuery(); // 쿼리 실행
 		while (rs.next()) { // 결과 ResultSet 객체 반복
 	        %>
-
 			<div class="col-md-4">
                 <div class="card bg-dark text-white">
                         <img src="image/product/<%=rs.getString("p_fileName")%>" class="card-img" alt="...">

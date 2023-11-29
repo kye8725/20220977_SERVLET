@@ -3,7 +3,7 @@
 <%@ page import="java.util.Date"%>
 <%@ page import="example.*" %>
 <%@ page import="dao.ProductRepository"%>
-<%@ page errorPage = "exception/product_not_found.jsp" %>
+<!--%@ page errorPage = "exception/product_not_found.jsp" %-->
 
 <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session" />
 <html>
@@ -52,7 +52,7 @@
 		</div>
 		<hr>
 	</div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>
 

@@ -37,3 +37,37 @@
 			while (rs.next()) {
 		%>
 		<div class="col-md-4">
+            <img src="../image/product/<%=rs.getString("p_fileName")%>" class="card-img" alt="...">
+
+            <h3><%=rs.getString("p_name")%></h3>
+            <p><%=rs.getString("p_description")%>
+		<p><%=rs.getString("p_UnitPrice")%>원
+		<p>
+		<%
+		     if (edit.equals("update")) {
+		%>
+		     <a href="product_update.jsp?id=<%=rs.getString("p_id")%>" class="btn btn-success" role="button"> 수정 &raquo;></a>
+		<%
+		     } else if (edit.equals("delete")) {
+		%>
+		     <a href="#" onclick="deleteConfirm('<%=rs.getString("p_id")%>')" class="btn btn-danger" role="button">삭제 &raquo;></a>
+		<%
+		     }
+		%>				
+	</div>
+	<%
+		}
+		if (rs != null)
+		rs.close();
+		if (pstmt != null)
+ 			pstmt.close();
+ 		if (conn != null)
+			conn.close();
+ 		%>
+	</div>
+	<hr>
+   </div>
+   <jsp:include page="footer_ad.jsp" />
+</body>
+</html>
+
