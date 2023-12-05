@@ -10,6 +10,6 @@
 	}
 
 	session.invalidate(); // 세션 초기화
-	
+	//session.removeAttribute("cartlist");
 	response.sendRedirect("product_cart.jsp");
 %>

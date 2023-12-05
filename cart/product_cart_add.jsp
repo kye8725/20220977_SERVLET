@@ -25,7 +25,9 @@
 			break;
 		}
 	}
-    ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("cartlist");
+
+	ArrayList<Product> list = (ArrayList<Product>) session.getAttribute("cartlist");
+
 	if (list == null) { 
 		list = new ArrayList<Product>();
 		session.setAttribute("cartlist", list); // 세션 키, 값 설정
@@ -43,7 +45,7 @@
 	}
 
 	if (cnt == 0) { 
-		goods.setQuantity(1);
+		goods.setQuantity(1);	
 		list.add(goods);
 	}
 

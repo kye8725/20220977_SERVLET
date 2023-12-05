@@ -14,6 +14,8 @@
 	String shipping_country = "";
 	String shipping_zipCode = "";
 	String shipping_addressName = "";
+	String shipping_detail1_addressName = ""; // 도전과제 11주차 3번
+	String shipping_detail2_addressName = ""; // 도전과제 11주차 3번
 	
 	Cookie[] cookies = request.getCookies(); // 쿠키 배열로부터 정보 얻기
 
@@ -33,6 +35,10 @@
 				shipping_zipCode = URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			if (n.equals("Shipping_addressName"))
 				shipping_addressName = URLDecoder.decode((thisCookie.getValue()), "utf-8");
+			if (n.equals("Shipping_detail1_addressName")) // 도전과제 11주차 3번
+				shipping_detail1_addressName = URLDecoder.decode((thisCookie.getValue()), "utf-8"); // 도전과제 11주차 3번
+			if (n.equals("Shipping_detail2_addressName")) // 도전과제 11주차 3번
+				shipping_detail2_addressName = URLDecoder.decode((thisCookie.getValue()), "utf-8"); // 도전과제 11주차 3번
 		}
 	}
 %>
@@ -40,71 +46,76 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <title>주문 정보</title>
 </head>
 <body>
 	<jsp:include page="../top_menu.jsp" />
 	<div class="jumbotron">
-	   <div class="container">
-		<h1 class="display-3">주문 정보</h1>
-	   </div>
-	</div>
+        <div class="container">
+            <h1 class="display-3">주문 정보</h1>
+        </div>
+    </div>
 
 	<div class="container col-8 alert alert-info">
-	   <div class="text-center ">
-		<h1>영수증</h1>
-	   </div>
-	<div class="row justify-content-between">
-		<div class="col-4" align="left">
-			<strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %>	<br> 
-			우편번호 : <% out.println(shipping_zipCode);%><br> 
-			주소 : <% out.println(shipping_addressName);%>(<% out.println(shipping_country);%>) <br>
-		</div>
-		<div class="col-4" align="right">
-			<p>	<em>배송일: <% out.println(shipping_shippingDate);%></em>
-		</div>
-	</div>
+        <div class="text-center ">
+            <h1>영수증</h1>
+        </div>
         
-    <div>
-		<table class="table table-hover">			
-		<tr>
-			<th class="text-center">도서</th>
-			<th class="text-center">#</th>
-			<th class="text-center">가격</th>
-			<th class="text-center">소계</th>
-		</tr>
-		<%
-			int sum = 0;
-			ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
-			if (cartList == null)
-				cartList = new ArrayList<Product>();
-			for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
-				Product product = cartList.get(i);
-				int total = product.getUnitPrice() * product.getQuantity();
-				sum = sum + total;
-		%>
-
-<tr>
-			<td class="text-center"><em><%=product.getPname()%> </em></td>
-			<td class="text-center"><%=product.getQuantity()%></td>
-			<td class="text-center"><%=product.getUnitPrice()%>원</td>
-			<td class="text-center"><%=total%>원</td>
-		</tr>
-		<%
-			}
-		%>
-		<tr>
-			<td> </td>
-			<td> </td>
-			<td class="text-right">	<strong>총액: </strong></td>
-			<td class="text-center text-danger"><strong><%=sum%> </strong></td>
-		</tr>
-		</table>
-		
-			<a href="order_info.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
+        <div class="row justify-content-between">
+            <div class="col-4" align="left">
+                <strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %>	<br> 
+                우편번호 : <% out.println(shipping_zipCode);%><br> 
+                주소 : <% out.println(shipping_addressName + " " + shipping_detail1_addressName + " " + shipping_detail2_addressName);%><br> <!-- 도전과제 11주차 3번 --> <!-- 도전과제 11주차 3번 -->
+                (<% out.println(shipping_country);%>) <br> 
+            </div>
+            
+            <div class="col-4" align="right">
+                <p>	<em>배송일: <% out.println(shipping_shippingDate);%></em>
+            </div>
+        </div>
+        
+        <div>
+            <table class="table table-hover">			
+                <tr>
+                    <th class="text-center">물품</th>
+                    <th class="text-center">#</th>
+                    <th class="text-center">가격</th>
+                    <th class="text-center">소계</th>
+                </tr>
+                <%
+                int sum = 0;
+                ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
+                if (cartList == null)
+                    cartList = new ArrayList<Product>();
+                for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
+                    Product product = cartList.get(i);
+                    int total = product.getUnitPrice() * product.getQuantity();
+                    sum = sum + total;
+                %>
+                
+                <tr>
+                    <td class="text-center"><em><%=product.getPname()%> </em></td>
+                    <td class="text-center"><%=product.getQuantity()%></td>
+                    <td class="text-center"><%=product.getUnitPrice()%>원</td>
+                    <td class="text-center"><%=total%>원</td>
+                </tr>
+                <%
+                }
+                %>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td class="text-right">	<strong>총액: </strong></td>
+                    <td class="text-center text-danger"><strong><%=sum%> </strong></td>
+                </tr>
+            </table>
+            <a href="order_info.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
 			<a href="order_end.jsp"  class="btn btn-success" role="button"> 주문 완료 </a>
 			<a href="order_cancelled.jsp" class="btn btn-secondary" role="button"> 취소 </a>			
-	   </div>
-	</div>	
+        </div>
+    </div>	
 </body>
 </html>

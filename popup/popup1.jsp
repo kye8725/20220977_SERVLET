@@ -1,4 +1,7 @@
-<%@ page contentType = "text/html; charset=utf-8" %>
+<!--페이지 템플릿 [이전 버전 관리용] -->
+
+<%@ page contentType = "text/html;charset=utf-8" %>
+
 <html>
     <head>
         <body>
@@ -8,8 +11,8 @@
             파일명은 popup1.jsp 
             <br><br> 
             홈페이지 메인 화면 로딩 후 자동으로 열립니다.
-            </h4>
-            <jsp:forward page="popup2.jsp" />
+            </h4> 
+            <jsp:forward page="popup2.jsp"/>
         </body>
     </head>
 </html>
